@@ -3,6 +3,19 @@
 Debian with [AWS CLI](https://github.com/aws/aws-cli/tree/v2) included.
 
 
+## `aws` Usage
+
+For the `aws` command usage, please refer to the following documents.
+
+- [AWS CLI Documentation](https://docs.aws.amazon.com/cli/)
+- [AWS CLI v2 Command Reference](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/index.html)
+  - [`aws ec2` Reference](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/index.html)
+  - [`aws s3` Reference](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/index.html)
+  - [`aws iam` Reference](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/iam/index.html)
+  - [`aws ecs` Reference](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ecs/index.html)
+  - [`aws eks` Reference](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/eks/index.html)
+
+
 ## Usage
 
 In order to use image from GitHub Container Registry instead of Docker Hub, you can replace `rtsp/aws-cli` with `ghcr.io/rtsp/docker-aws-cli` anywhere in the instruction below.
@@ -27,10 +40,10 @@ docker run --rm -it \
   rtsp/aws-cli bash
 ```
 
-#### Run Once
+### Run a Specific Command
 
 ```ShellSession
-docker run --rm -it \
+docker run --rm \
   -e AWS_ACCESS_KEY_ID=AKIAXXXX \
   -e AWS_SECRET_ACCESS_KEY=XXXX \
   -e AWS_DEFAULT_REGION=ap-southeast-1 \
@@ -38,6 +51,8 @@ docker run --rm -it \
 ```
 
 ### Run as Daemon
+
+WARNING: This will leave your keys in the running container.
 
 ```ShellSession
 docker run -d --name aws-cli \
@@ -48,14 +63,14 @@ docker run -d --name aws-cli \
 ```
 
 ```ShellSession
-docker exec -it aws-cli aws s3 ls
+docker exec aws-cli aws s3 ls
 
 docker exec -it aws-cli bash
 ```
 
-WARNING: This will leave your keys in the running container.
-
 ### Run as Kubernetes Pod
+
+WARNING: This will leave your keys in the running pod.
 
 ```yaml
 ---
@@ -77,12 +92,10 @@ spec:
 ```
 
 ```ShellSession
-kubectl exec -it aws-cli -- aws s3 ls
+kubectl exec aws-cli -- aws s3 ls
 
 kubectl exec -it aws-cli -- bash
 ```
-
-WARNING: This will leave your keys in the running pod.
 
 
 ## Links
