@@ -29,7 +29,7 @@ RUN set -x && apt-get update && apt-get --yes --no-install-recommends install \
     && rm -rvf /var/lib/apt/lists/*
 
 ARG AWSCLI_ARCH=x86_64
-ARG AWSCLI_VERSION=2.2.38
+ARG AWSCLI_VERSION=2.2.39
 
 RUN set -x \
     && mkdir -p /tmp/awscli && cd /tmp/awscli \
