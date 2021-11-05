@@ -28,12 +28,14 @@ RUN set -x && apt-get update && apt-get --yes --no-install-recommends install \
     wget \
     && rm -rvf /var/lib/apt/lists/*
 
-ARG AWSCLI_ARCH=x86_64
+ARG AWSCLI_ARCH
 ARG AWSCLI_VERSION=2.2.40
+
+ARG TARGETPLATFORM
 
 RUN set -x \
     && mkdir -p /tmp/awscli && cd /tmp/awscli \
-    && curl "https://awscli.amazonaws.com/awscli-exe-linux-${AWSCLI_ARCH}-${AWSCLI_VERSION}.zip" -o awscliv2.zip \
+    && curl "https://awscli.amazonaws.com/awscli-exe-linux-$( [ "$TARGETPLATFORM" = "linux/amd64" ] && echo x86_64 || echo aarch64 )-${AWSCLI_VERSION}.zip" -o awscliv2.zip \
     && unzip -q awscliv2.zip \
     && ./aws/install \
     && rm -rf /tmp/awscli \
