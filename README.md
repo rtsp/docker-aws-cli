@@ -103,7 +103,6 @@ WARNING: This will leave your keys in the running pod.
 
 ```yaml
 ---
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
