@@ -97,6 +97,46 @@ kubectl exec aws-cli -- aws s3 ls
 kubectl exec -it aws-cli -- bash
 ```
 
+### Run as Kubernetes Deployment
+
+WARNING: This will leave your keys in the running pod.
+
+```yaml
+---
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aws-cli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: aws-cli
+  template:
+    metadata:
+      labels:
+        name: aws-cli
+    spec:
+      containers:
+        - name: aws-cli
+          image: rtsp/aws-cli:latest
+          imagePullPolicy: Always
+          env:
+          - name: AWS_ACCESS_KEY_ID
+            value: AKIAXXXX
+          - name: AWS_SECRET_ACCESS_KEY
+            value: XXXX
+          - name: AWS_DEFAULT_REGION
+            value: ap-southeast-1
+```
+
+```ShellSession
+kubectl exec deployment/aws-cli -- aws s3 ls
+
+kubectl exec -it deployment/aws-cli -- bash
+```
+
 
 ## Links
 
