@@ -43,4 +43,4 @@ RUN set -x \
 
 COPY files/ /root/
 
-CMD ["/bin/sleep", "365d"]
+CMD ["/bin/sleep", "infinity"]
