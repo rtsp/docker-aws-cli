@@ -29,7 +29,7 @@ RUN set -x && apt-get update && apt-get --yes --no-install-recommends install \
     && rm -rvf /var/lib/apt/lists/*
 
 ARG AWSCLI_ARCH
-ARG AWSCLI_VERSION=2.11.11
+ARG AWSCLI_VERSION=2.11.12
 
 ARG TARGETPLATFORM
 
