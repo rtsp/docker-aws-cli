@@ -1,4 +1,4 @@
-FROM debian:bullseye-20230703-slim
+FROM debian:bookworm-20230703-slim
 
 LABEL org.opencontainers.image.title="RTSP AWS CLI"
 LABEL org.opencontainers.image.authors="RTSP <docker@rtsp.us>"
